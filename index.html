@@ -239,6 +239,31 @@
   .chart-dot-before{ fill:var(--accent-blue); opacity:0.4; stroke:var(--paper-raised); stroke-width:2; }
   .chart-connector{ stroke:var(--accent-blue); stroke-width:2; }
 
+  /* ---------- writing / posts ---------- */
+  .post{
+    background:var(--paper-raised); border:1px solid var(--rule); border-radius:4px;
+    padding:32px 34px; margin-bottom:28px; box-shadow:0 1px 2px var(--shadow);
+  }
+  .post:last-child{ margin-bottom:0; }
+  .post-meta{
+    font-family:"IBM Plex Mono", monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:12px;
+  }
+  .post h3{ font-size:1.55rem; margin-bottom:20px; }
+  .post p{ margin-bottom:1em; max-width:68ch; color:var(--ink); }
+  .post p:last-child{ margin-bottom:0; }
+  .post-sources{
+    margin-top:26px; padding-top:20px; border-top:1px dashed var(--rule);
+  }
+  .post-sources-label{
+    font-family:"IBM Plex Mono", monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--ink-faint); display:block; margin-bottom:10px;
+  }
+  .post-sources a{
+    display:flex; align-items:baseline; gap:8px; font-family:"IBM Plex Mono", monospace;
+    font-size:0.82rem; margin-top:6px;
+  }
+
   /* ---------- contact ---------- */
   .contact-line{ display:flex; align-items:baseline; gap:12px; margin-bottom:10px; flex-wrap:wrap; }
   .contact-label{
@@ -282,6 +307,7 @@
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="projects.html">Projects</a></li>
+    <li><a href="writing.html">Writing</a></li>
     <li><a href="projects.html#contact">Contact</a></li>
   </ul>
 </div>
