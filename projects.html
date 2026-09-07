@@ -263,6 +263,17 @@
     display:flex; align-items:baseline; gap:8px; font-family:"IBM Plex Mono", monospace;
     font-size:0.82rem; margin-top:6px;
   }
+  .post blockquote{
+    margin:22px 0; padding-left:20px; border-left:2px solid var(--accent-blue);
+  }
+  .post blockquote p{
+    font-family:"Newsreader", serif; font-style:italic; font-size:1.02rem;
+    color:var(--ink-soft); max-width:64ch; margin-bottom:0.6em;
+  }
+  .post blockquote cite{
+    display:block; font-family:"IBM Plex Mono", monospace; font-style:normal;
+    font-size:0.76rem; color:var(--ink-faint); margin-top:8px;
+  }
 
   /* ---------- contact ---------- */
   .contact-line{ display:flex; align-items:baseline; gap:12px; margin-bottom:10px; flex-wrap:wrap; }
@@ -298,7 +309,6 @@
     *{ transition:none !important; animation:none !important; }
   }
 </style>
-
 </head>
 <body>
 
@@ -311,7 +321,6 @@
     <li><a href="projects.html#contact">Contact</a></li>
   </ul>
 </div>
-
 <div class="page" id="top">
 
   <section class="row" id="projects">

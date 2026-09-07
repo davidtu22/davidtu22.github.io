@@ -263,6 +263,17 @@
     display:flex; align-items:baseline; gap:8px; font-family:"IBM Plex Mono", monospace;
     font-size:0.82rem; margin-top:6px;
   }
+  .post blockquote{
+    margin:22px 0; padding-left:20px; border-left:2px solid var(--accent-blue);
+  }
+  .post blockquote p{
+    font-family:"Newsreader", serif; font-style:italic; font-size:1.02rem;
+    color:var(--ink-soft); max-width:64ch; margin-bottom:0.6em;
+  }
+  .post blockquote cite{
+    display:block; font-family:"IBM Plex Mono", monospace; font-style:normal;
+    font-size:0.76rem; color:var(--ink-faint); margin-top:8px;
+  }
 
   /* ---------- contact ---------- */
   .contact-line{ display:flex; align-items:baseline; gap:12px; margin-bottom:10px; flex-wrap:wrap; }
@@ -298,7 +309,6 @@
     *{ transition:none !important; animation:none !important; }
   }
 </style>
-
 </head>
 <body>
 
@@ -311,7 +321,6 @@
     <li><a href="projects.html#contact">Contact</a></li>
   </ul>
 </div>
-
 <div class="page" id="top">
 
   <section class="row" id="writing">
@@ -323,6 +332,42 @@
       <p class="note">Filed under: things I would say out loud at a party if you made the mistake of asking what my capstone was about.</p>
     </aside>
   </section>
+
+  <div class="row">
+    <div class="col-main">
+      <article class="post">
+        <div class="post-meta">September 2026 &middot; watching: Unlearning Economics, &ldquo;Everything Was Already A.I&rdquo;</div>
+        <h3>Forever Games, LLMs, and the Economy</h3>
+
+        <p>With the release of OpenAI's Astra model, we're already seeing some trends pop up. From the true-believer crowd, you have examples like uncanny AI replications of popular games — <em>Call of Duty</em>, <em>Fall Guys</em>. You also have the next stage of MMORPG plug-in tools that farm materials while the game runs in the background: <em>WoW</em> and <em>Minecraft</em> are two I've already seen. I struggle to see the use value in these cases next to the more creative ventures shown by games like <em>Infinite Craft</em>. What's the bar, if LLMs are simply being used to create inferior copies of games that already exist — or worse, to play the kinds of games that players would rather have a bot controlling for them?</p>
+
+        <p>The crux of the argument lies in a thesis put forward by Dr. Cahal Moran, a behavioral economist who runs the YouTube channel <em>Unlearning Economics</em> — video-essay-style commentary. One of his latest uploads, &ldquo;Everything Was Already A.I,&rdquo; argues there's a through-line traceable from media and entertainment to enfranchisement to the current AI boom. Even in the years before AI, there was a noticeable drop in quality across the cultural productions that defined the 2000s and 2010s. A returning example could make you swear this was a video about <em>The Simpsons</em> (Dr. Moran insists it's not): a beloved franchise iconic for quippy, culturally aware humor — how many predictions has <em>The Simpsons</em> gotten right at this point? — that eventually dragged its seasons out, becoming the very thing it once poked fun at, collaborating across its 20th Century Fox IPs with shows it had heavily inspired, like <em>Family Guy</em> and <em>American Dad</em>. Now, with a new movie lined up for next year, it's a case study in Hollywood's bloating problem. You can see the same issue elsewhere. Why do some movies and games released in the last three years look worse than productions from decades ago? Dr. Moran compares the hype around the trailers for <em>Avengers: Infinity War</em> to the reception of <em>Ant-Man and the Wasp: Quantumania</em>, a film that came out during what was perceived as a lull for Marvel Studios. Art direction and cinematography were never Marvel's strongest selling point, but the back-to-back contrast between scenes from both movies reveals just how low the bar had gotten.</p>
+
+        <p>Games make maybe an even stronger case. There's a parallel story in the older Batman games — the latest being <em>Arkham Knight</em>, all the way back in 2015 — against the poor reception of their spiritual successors, <em>Suicide Squad: Kill the Justice League</em> and <em>Gotham Knights</em>. With the continued rollout of Nvidia's latest AI-assisted DLSS update, there's another disconnect: between product and marketing, and between tech and creative. Graphic fidelity is an interesting pursuit with diminishing returns over time. At some point, how good a game looked stopped mattering as much as its intended art direction — which is very apparent in games specifically. The latest footage of Rockstar's long-awaited <em>GTA VI</em> shows that after a decade, graphics can improve, but what really holds players' attention is the cinematic look and feel of the game. Lucia, Jason, and the rest of the cast look fantastic, but it was never the artists' intention to make these characters photorealistic — a problem DLSS consistently misreads. The trademark AI-filter sheen doesn't work on most games, because that was never how most games were supposed to look. Gamescom 2026, meanwhile, revealed that when all else fails, the safest bet any developer can make is to copy elements of existing games one-to-one — down to specific action sequences and trademark mechanics — package it into a glittery, indiscernible style, and give it a free-to-play, live-service model rife with microtransactions. These are the literal &ldquo;forever games&rdquo; that, extrapolated, become a meta-commentary on the other, economic &ldquo;forever game.&rdquo;</p>
+
+        <p>The monetization problem runs deeper still. Because the only rule every sector follows, at the end of the day, is &ldquo;line go up,&rdquo; Dr. Moran cites a study describing the present economy as a scatter of &ldquo;accountability sinks.&rdquo; At some point, companies would rather settle for permanent productive and creative stagnation, because they're simply too big to fail.</p>
+
+        <blockquote>
+          <p>&ldquo;Everybody in the industry keeps playing the music even as the bubble gets worse and that everybody knows is a bubble&rdquo;</p>
+          <cite>— Dr. Cahal Moran, on 2008 and now alike</cite>
+        </blockquote>
+
+        <p>As Dr. Moran sees it, the economist and computer scientist Herbert Simon — best known for his theories of &ldquo;bounded rationality&rdquo; and &ldquo;satisficing&rdquo; — basically solved economics a long time ago. The rest, as Moran lays it out, is simply politics. Which makes AI reflective of the larger economic condition.</p>
+
+        <blockquote>
+          <p>&ldquo;Rather than being intelligent agents, Large Language Models combine the features of cultural and social technologies in a new way. They generate summaries of unmanageably large and complex bodies of human-generated information. But these systems do not merely summarize this information, like library catalogs, Internet search, and Wikipedia. They also can reorganize and reconstruct representations or &lsquo;simulations&rsquo; of this information at scale and in novel ways, like markets, states, and bureaucracies&hellip; Just as market prices are lossy representations of the underlying allocations and uses of resources, and government statistics and bureaucratic categories imperfectly represent the characteristics of underlying populations, so too Large Models are &lsquo;lossy JPEGs&rsquo; of the data corpora on which they have been trained.&rdquo;</p>
+          <cite>— Henry Farrell</cite>
+        </blockquote>
+
+        <p>To put it another way: LLMs are seamless feedback machines that receive and reciprocate. Later in the video, Farrell continues his inspection of AI's role in a K-shaped economy:</p>
+
+        <blockquote>
+          <p>&ldquo;Ensuring the continued production of high quality knowledge is hard. It is hard when big monopolies or wannabe monopolies have every incentive to batten on the knowledge production systems that they rely on, cannibalizing expensive-and-laborious systems for producing knowledge by flooding the market with cheaper summarizations. Social movements, activists, policy makers should push back against arguments that are, in the long run, both specious and self-undermining. Any division of rights and proceeds ought surely recognize that LLMs are valuable engines of knowledge, but only in conjunction with high quality knowledge in the first place. Enough of the proceeds need to go to the actual knowledge producers for the system to not be self-cannibalizing.&rdquo;</p>
+          <cite>— Henry Farrell</cite>
+        </blockquote>
+      </article>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col-main">
@@ -350,7 +395,6 @@
       </article>
     </div>
   </div>
-
 
   <footer>
     <span>D. Tu, 2026. Compiled by hand, occasionally by Claude.</span>
