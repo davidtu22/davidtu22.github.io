@@ -372,6 +372,28 @@
   <div class="row">
     <div class="col-main">
       <article class="post">
+        <div class="post-meta">September 2026 &middot; building: a static Infinite Craft clone</div>
+        <h3>What &ldquo;Runs on an LLM&rdquo; Actually Costs</h3>
+
+        <p>Started as a first web project &mdash; a small clone of Neal Agarwal's <em>Infinite Craft</em>, the game where you drag elements together and they combine into new ones. I got it working end to end: drag-and-drop, a recipe table, persistence, the whole loop. Then I got curious about how the real thing actually generates its combinations, and that turned out to be the more interesting project.</p>
+
+        <p>Infinite Craft doesn't hard-code any of it. Every new pairing anyone has ever tried gets sent live to an LLM (Llama 2, served through Together.ai), and the result is cached forever after so no one else ever pays for that same combination again. Agarwal has said managing that cost was the hardest part of building the game &mdash; and it's easy to see why once you sit with the economics: a game <em>made with</em> an LLM does that work once, at build time, and ships as ordinary static assets from then on. A game that <em>runs on</em> one keeps a live meter running for as long as it exists, and that meter scales with how popular the game gets, not with how much work you put into it. AI Dungeon is the cautionary tale here &mdash; Latitude switched off OpenAI's model in 2021 over rising costs and content-moderation pressure, and players felt the resulting quality drop immediately.</p>
+
+        <p>Once I understood that distinction, I didn't actually want to run the second kind of game &mdash; not as a hobby project with no revenue model, footing an open-ended API bill for whoever finds the link. So the version I deployed stays entirely in the first category: a hand-authored recipe table, procedural in the plain, old-fashioned sense, with zero marginal cost per play. I did build and test a small proof-of-concept backend (Claude Haiku 4.5 generating genuinely novel combinations on request) to see the real architecture work end to end &mdash; but it was never deployed for open play, on purpose. The gap between those two versions is basically the whole essay.</p>
+
+        <div class="post-sources">
+          <span class="post-sources-label">Related</span>
+          <a href="https://davidtu22.github.io/a-case-study-on-infinite-craft-and-llm-games/" target="_blank" rel="noopener">&#8594; Play the static demo</a>
+          <a href="https://claude.ai/code/artifact/250adda8-6c9b-4532-96e5-bb339f58b53c" target="_blank" rel="noopener">&#8594; Read the full case study</a>
+          <a href="https://github.com/davidtu22/a-case-study-on-infinite-craft-and-llm-games" target="_blank" rel="noopener">&#8594; View the source</a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-main">
+      <article class="post">
         <div class="post-meta">September 2026 &middot; reading: Žižek, &ldquo;Why We Remain Alive Also in a Dead Internet&rdquo;</div>
         <h3>A.I. and the Protestant Work Ethic, with a Little Help from Žižek</h3>
 
