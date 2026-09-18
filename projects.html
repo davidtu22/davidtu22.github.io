@@ -35,14 +35,20 @@
     --accent-red-soft: #A9483C;
     --accent-blue:#2F5570;
     --accent-term: #8A6423;
+    --term-glow:  none;
+    --card-ring:  0 0 #0000;
+    --body-bg-image: repeating-linear-gradient(
+      to bottom, transparent, transparent 37px,
+      var(--rule-faint) 37px, var(--rule-faint) 38px
+    );
     --focus:      #2F5570;
     --shadow:     rgba(43,38,32,0.12);
   }
 
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --paper:      #1E1A15;
-      --paper-raised:#26201A;
+      --paper:      #100D09;
+      --paper-raised:#1B140C;
       --ink:        #EDE7DA;
       --ink-soft:   #B5AB98;
       --ink-faint:  #8A8071;
@@ -51,14 +57,20 @@
       --accent-red: #DD8A7C;
       --accent-red-soft: #E39C90;
       --accent-blue:#8FB6CE;
-      --accent-term: #E3B564;
-      --focus:      #8FB6CE;
-      --shadow:     rgba(0,0,0,0.35);
+      --accent-term: #FFAE42;
+      --term-glow:  0 0 10px rgba(255,174,66,0.55), 0 0 2px rgba(255,174,66,0.8);
+      --card-ring:  0 0 0 1px rgba(255,174,66,0.12);
+      --body-bg-image: repeating-linear-gradient(
+        to bottom, transparent, transparent 3px,
+        rgba(255,174,66,0.035) 3px, rgba(255,174,66,0.035) 4px
+      );
+      --focus:      #FFAE42;
+      --shadow:     rgba(0,0,0,0.5);
     }
   }
   :root[data-theme="dark"]{
-    --paper:      #1E1A15;
-    --paper-raised:#26201A;
+    --paper:      #100D09;
+    --paper-raised:#1B140C;
     --ink:        #EDE7DA;
     --ink-soft:   #B5AB98;
     --ink-faint:  #8A8071;
@@ -67,9 +79,15 @@
     --accent-red: #DD8A7C;
     --accent-red-soft: #E39C90;
     --accent-blue:#8FB6CE;
-    --accent-term: #E3B564;
-    --focus:      #8FB6CE;
-    --shadow:     rgba(0,0,0,0.35);
+    --accent-term: #FFAE42;
+    --term-glow:  0 0 10px rgba(255,174,66,0.55), 0 0 2px rgba(255,174,66,0.8);
+    --card-ring:  0 0 0 1px rgba(255,174,66,0.12);
+    --body-bg-image: repeating-linear-gradient(
+      to bottom, transparent, transparent 3px,
+      rgba(255,174,66,0.035) 3px, rgba(255,174,66,0.035) 4px
+    );
+    --focus:      #FFAE42;
+    --shadow:     rgba(0,0,0,0.5);
   }
 
   *{ box-sizing:border-box; }
@@ -77,11 +95,7 @@
   body{
     margin:0;
     background:var(--paper);
-    background-image: repeating-linear-gradient(
-      to bottom,
-      transparent, transparent 37px,
-      var(--rule-faint) 37px, var(--rule-faint) 38px
-    );
+    background-image: var(--body-bg-image);
     color:var(--ink);
     font-family:"Source Serif 4", Georgia, "Times New Roman", serif;
     font-size:17px;
@@ -216,12 +230,14 @@
   /* ---------- projects (figures) ---------- */
   .figure{
     background:var(--paper-raised); border:1px solid var(--rule); border-radius:4px;
-    padding:22px 24px; margin-bottom:20px; box-shadow:0 1px 2px var(--shadow);
+    padding:22px 24px; margin-bottom:20px;
+    box-shadow:0 1px 2px var(--shadow), var(--card-ring);
   }
   .figure:last-child{ margin-bottom:0; }
   .fig-label{
     font-family:"IBM Plex Mono", monospace; font-size:0.72rem; text-transform:uppercase;
     letter-spacing:0.06em; color:var(--accent-term); display:block; margin-bottom:8px;
+    text-shadow:var(--term-glow);
   }
   .fig-label::before{ content:"[ "; }
   .fig-label::after{ content:" ]"; }
@@ -242,6 +258,7 @@
   .term-cursor{
     display:inline-block; margin-left:8px; color:var(--accent-term);
     font-size:0.7em; vertical-align:baseline; animation:term-blink 1.1s steps(1) infinite;
+    text-shadow:var(--term-glow);
   }
   @keyframes term-blink{ 50%{ opacity:0; } }
 
@@ -254,6 +271,7 @@
     content:"// metrics"; position:absolute; top:-11px; left:0; padding:0 8px 0 0;
     background:var(--paper-raised); font-family:"IBM Plex Mono", monospace;
     font-size:0.68rem; letter-spacing:0.06em; color:var(--accent-term);
+    text-shadow:var(--term-glow);
   }
   .metric{ display:flex; flex-direction:column; }
   .metric-label{
@@ -283,7 +301,8 @@
   .post{
     background:var(--paper-raised); border:1px solid var(--rule); border-radius:4px;
     max-width:740px;
-    padding:38px 44px; margin-bottom:28px; box-shadow:0 1px 2px var(--shadow);
+    padding:38px 44px; margin-bottom:28px;
+    box-shadow:0 1px 2px var(--shadow), var(--card-ring);
   }
   .post:last-child{ margin-bottom:0; }
   .post-meta{
