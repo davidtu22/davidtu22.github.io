@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme-preference');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  }catch(e){}
+})();
+</script>
 <title>David Tu</title>
 <meta name="description" content="Personal site of David Tu — College of Social Studies &amp; Sociology, Wesleyan '26, bringing a critical eye on tech into product work.">
 
@@ -114,6 +122,14 @@
     color:var(--accent-blue); text-decoration:none;
   }
   .nav-links a:hover{ color:var(--accent-red); }
+  .theme-toggle-item{ margin-left:auto; }
+  .theme-toggle-item::before{ content:none !important; }
+  .theme-toggle{
+    font-family:"IBM Plex Mono", monospace; font-size:0.85rem; line-height:1;
+    background:none; border:1px solid var(--rule); border-radius:4px;
+    color:var(--ink-soft); cursor:pointer; padding:4px 9px;
+  }
+  .theme-toggle:hover{ border-color:var(--accent-red); color:var(--accent-red); }
 
   /* ---------- title block ---------- */
   .titleblock{
@@ -333,8 +349,32 @@
     <li><a href="projects.html">Projects</a></li>
     <li><a href="writing.html">Writing</a></li>
     <li><a href="projects.html#contact">Contact</a></li>
+    <li class="theme-toggle-item"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">&#9789;</button></li>
   </ul>
 </div>
+<script>
+(function(){
+  var KEY = 'theme-preference';
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function systemDark(){ return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }
+  function effectiveTheme(){
+    var saved; try{ saved = localStorage.getItem(KEY); }catch(e){}
+    if (saved === 'light' || saved === 'dark') return saved;
+    return systemDark() ? 'dark' : 'light';
+  }
+  function updateIcon(){ if (btn) btn.innerHTML = effectiveTheme() === 'dark' ? '&#9728;' : '&#9789;'; }
+  updateIcon();
+  if (btn){
+    btn.addEventListener('click', function(){
+      var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try{ localStorage.setItem(KEY, next); }catch(e){}
+      updateIcon();
+    });
+  }
+})();
+</script>
 <div class="page" id="top">
 
   <header class="titleblock">
