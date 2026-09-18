@@ -256,15 +256,16 @@
   /* ---------- writing / posts ---------- */
   .post{
     background:var(--paper-raised); border:1px solid var(--rule); border-radius:4px;
-    padding:32px 34px; margin-bottom:28px; box-shadow:0 1px 2px var(--shadow);
+    max-width:740px;
+    padding:38px 44px; margin-bottom:28px; box-shadow:0 1px 2px var(--shadow);
   }
   .post:last-child{ margin-bottom:0; }
   .post-meta{
     font-family:"IBM Plex Mono", monospace; font-size:0.72rem; text-transform:uppercase;
-    letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:12px;
+    letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:16px;
   }
-  .post h3{ font-size:1.55rem; margin-bottom:20px; }
-  .post p{ margin-bottom:1em; max-width:68ch; color:var(--ink); }
+  .post h3{ font-size:1.55rem; margin-bottom:24px; text-wrap:balance; }
+  .post p{ margin-bottom:1.35em; max-width:68ch; color:var(--ink); }
   .post p:last-child{ margin-bottom:0; }
   .post-sources{
     margin-top:26px; padding-top:20px; border-top:1px dashed var(--rule);
@@ -317,6 +318,7 @@
     .page{ padding:0 20px 60px; }
     .titleblock{ padding:44px 0 32px; flex-direction:column-reverse; align-items:flex-start; gap:24px; }
     .titleblock-photo{ width:150px; }
+    .post{ padding:26px 22px; }
   }
 
   @media (prefers-reduced-motion:reduce){

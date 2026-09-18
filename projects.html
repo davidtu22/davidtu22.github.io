@@ -34,6 +34,7 @@
     --accent-red: #96352A;
     --accent-red-soft: #A9483C;
     --accent-blue:#2F5570;
+    --accent-term: #8A6423;
     --focus:      #2F5570;
     --shadow:     rgba(43,38,32,0.12);
   }
@@ -50,6 +51,7 @@
       --accent-red: #DD8A7C;
       --accent-red-soft: #E39C90;
       --accent-blue:#8FB6CE;
+      --accent-term: #E3B564;
       --focus:      #8FB6CE;
       --shadow:     rgba(0,0,0,0.35);
     }
@@ -65,6 +67,7 @@
     --accent-red: #DD8A7C;
     --accent-red-soft: #E39C90;
     --accent-blue:#8FB6CE;
+    --accent-term: #E3B564;
     --focus:      #8FB6CE;
     --shadow:     rgba(0,0,0,0.35);
   }
@@ -218,8 +221,10 @@
   .figure:last-child{ margin-bottom:0; }
   .fig-label{
     font-family:"IBM Plex Mono", monospace; font-size:0.72rem; text-transform:uppercase;
-    letter-spacing:0.06em; color:var(--accent-blue); display:block; margin-bottom:8px;
+    letter-spacing:0.06em; color:var(--accent-term); display:block; margin-bottom:8px;
   }
+  .fig-label::before{ content:"[ "; }
+  .fig-label::after{ content:" ]"; }
   .figure h3{ font-size:1.15rem; margin-bottom:8px; }
   .figure p{ margin-bottom:0.7em; color:var(--ink-soft); }
   .figure p:last-child{ margin-bottom:0; }
@@ -234,9 +239,21 @@
   .sub-figure .post-sources{ margin-top:18px; padding-top:16px; }
 
   /* ---------- metrics ---------- */
+  .term-cursor{
+    display:inline-block; margin-left:8px; color:var(--accent-term);
+    font-size:0.7em; vertical-align:baseline; animation:term-blink 1.1s steps(1) infinite;
+  }
+  @keyframes term-blink{ 50%{ opacity:0; } }
+
   .metrics-grid{
     display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-    gap:28px; margin-top:22px; padding-top:22px; border-top:1px dashed var(--rule);
+    gap:28px; margin-top:26px; padding-top:26px; border-top:1px solid var(--rule);
+    position:relative;
+  }
+  .metrics-grid::before{
+    content:"// metrics"; position:absolute; top:-11px; left:0; padding:0 8px 0 0;
+    background:var(--paper-raised); font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem; letter-spacing:0.06em; color:var(--accent-term);
   }
   .metric{ display:flex; flex-direction:column; }
   .metric-label{
@@ -265,15 +282,16 @@
   /* ---------- writing / posts ---------- */
   .post{
     background:var(--paper-raised); border:1px solid var(--rule); border-radius:4px;
-    padding:32px 34px; margin-bottom:28px; box-shadow:0 1px 2px var(--shadow);
+    max-width:740px;
+    padding:38px 44px; margin-bottom:28px; box-shadow:0 1px 2px var(--shadow);
   }
   .post:last-child{ margin-bottom:0; }
   .post-meta{
     font-family:"IBM Plex Mono", monospace; font-size:0.72rem; text-transform:uppercase;
-    letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:12px;
+    letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:16px;
   }
-  .post h3{ font-size:1.55rem; margin-bottom:20px; }
-  .post p{ margin-bottom:1em; max-width:68ch; color:var(--ink); }
+  .post h3{ font-size:1.55rem; margin-bottom:24px; text-wrap:balance; }
+  .post p{ margin-bottom:1.35em; max-width:68ch; color:var(--ink); }
   .post p:last-child{ margin-bottom:0; }
   .post-sources{
     margin-top:26px; padding-top:20px; border-top:1px dashed var(--rule);
@@ -326,6 +344,7 @@
     .page{ padding:0 20px 60px; }
     .titleblock{ padding:44px 0 32px; flex-direction:column-reverse; align-items:flex-start; gap:24px; }
     .titleblock-photo{ width:150px; }
+    .post{ padding:26px 22px; }
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -348,7 +367,7 @@
 
   <section class="row" id="projects">
     <div class="col-main">
-      <div class="sec-head"><span class="sec-num">I.</span><h2>Projects</h2></div>
+      <div class="sec-head"><span class="sec-num">I.</span><h2>Projects<span class="term-cursor" aria-hidden="true">&#9608;</span></h2></div>
       <p class="lede">I use AI heavily to build these, and this isn't the site where I'd pretend otherwise. But there's a real difference between procedural generation — rules producing structured variety, which is what actually makes something like Infinite Craft or a roguelike work — and generative AI, a model producing content wholesale. I care which one I'm reaching for, and why. I want to understand the code underneath what I ship, and there are things — the writing and art direction that make Disco Elysium what it is, for one — I don't think generative AI should touch. I care about a tool's effect as much as its affect: what it produces, and what it does to the person using it.</p>
     </div>
     <aside class="col-margin">
