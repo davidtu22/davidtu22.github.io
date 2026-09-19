@@ -31,51 +31,32 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+  /* Projects defaults dark regardless of system preference — this page's
+     register is the terminal one. [data-theme="light"] is the explicit
+     opt-out via the nav toggle; [data-theme="dark"] just re-asserts these
+     same values when the toggle is clicked back after that. */
   :root{
-    --paper:      #F3EEE1;
-    --paper-raised:#EAE2CF;
-    --ink:        #2B2620;
-    --ink-soft:   #6B6255;
-    --ink-faint:  #948A7A;
-    --rule:       #DAD0BC;
-    --rule-faint: rgba(43,38,32,0.055);
-    --accent-red: #96352A;
-    --accent-red-soft: #A9483C;
-    --accent-blue:#2F5570;
-    --accent-term: #8A6423;
-    --term-glow:  none;
-    --card-ring:  0 0 #0000;
+    --paper:      #100D09;
+    --paper-raised:#1B140C;
+    --ink:        #EDE7DA;
+    --ink-soft:   #B5AB98;
+    --ink-faint:  #8A8071;
+    --rule:       #3A3226;
+    --rule-faint: rgba(237,231,218,0.06);
+    --accent-red: #DD8A7C;
+    --accent-red-soft: #E39C90;
+    --accent-blue:#8FB6CE;
+    --accent-term: #FFAE42;
+    --term-glow:  0 0 10px rgba(255,174,66,0.55), 0 0 2px rgba(255,174,66,0.8);
+    --card-ring:  0 0 0 1px rgba(255,174,66,0.12);
     --body-bg-image: repeating-linear-gradient(
-      to bottom, transparent, transparent 37px,
-      var(--rule-faint) 37px, var(--rule-faint) 38px
+      to bottom, transparent, transparent 3px,
+      rgba(255,174,66,0.035) 3px, rgba(255,174,66,0.035) 4px
     );
-    --focus:      #2F5570;
-    --shadow:     rgba(43,38,32,0.12);
+    --focus:      #FFAE42;
+    --shadow:     rgba(0,0,0,0.5);
   }
 
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --paper:      #100D09;
-      --paper-raised:#1B140C;
-      --ink:        #EDE7DA;
-      --ink-soft:   #B5AB98;
-      --ink-faint:  #8A8071;
-      --rule:       #3A3226;
-      --rule-faint: rgba(237,231,218,0.06);
-      --accent-red: #DD8A7C;
-      --accent-red-soft: #E39C90;
-      --accent-blue:#8FB6CE;
-      --accent-term: #FFAE42;
-      --term-glow:  0 0 10px rgba(255,174,66,0.55), 0 0 2px rgba(255,174,66,0.8);
-      --card-ring:  0 0 0 1px rgba(255,174,66,0.12);
-      --body-bg-image: repeating-linear-gradient(
-        to bottom, transparent, transparent 3px,
-        rgba(255,174,66,0.035) 3px, rgba(255,174,66,0.035) 4px
-      );
-      --focus:      #FFAE42;
-      --shadow:     rgba(0,0,0,0.5);
-    }
-  }
   :root[data-theme="dark"]{
     --paper:      #100D09;
     --paper-raised:#1B140C;
@@ -96,6 +77,28 @@
     );
     --focus:      #FFAE42;
     --shadow:     rgba(0,0,0,0.5);
+  }
+
+  :root[data-theme="light"]{
+    --paper:      #F3EEE1;
+    --paper-raised:#EAE2CF;
+    --ink:        #2B2620;
+    --ink-soft:   #6B6255;
+    --ink-faint:  #948A7A;
+    --rule:       #DAD0BC;
+    --rule-faint: rgba(43,38,32,0.055);
+    --accent-red: #96352A;
+    --accent-red-soft: #A9483C;
+    --accent-blue:#2F5570;
+    --accent-term: #8A6423;
+    --term-glow:  none;
+    --card-ring:  0 0 #0000;
+    --body-bg-image: repeating-linear-gradient(
+      to bottom, transparent, transparent 37px,
+      var(--rule-faint) 37px, var(--rule-faint) 38px
+    );
+    --focus:      #2F5570;
+    --shadow:     rgba(43,38,32,0.12);
   }
 
   *{ box-sizing:border-box; }
@@ -404,11 +407,12 @@
   var KEY = 'theme-preference';
   var root = document.documentElement;
   var btn = document.getElementById('theme-toggle');
-  function systemDark(){ return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }
   function effectiveTheme(){
+    // This page defaults dark regardless of OS/browser preference —
+    // it's the terminal register. No saved override means dark.
     var saved; try{ saved = localStorage.getItem(KEY); }catch(e){}
     if (saved === 'light' || saved === 'dark') return saved;
-    return systemDark() ? 'dark' : 'light';
+    return 'dark';
   }
   function updateIcon(){ if (btn) btn.innerHTML = effectiveTheme() === 'dark' ? '&#9728;' : '&#9789;'; }
   updateIcon();
