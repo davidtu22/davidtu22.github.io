@@ -24,18 +24,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:      #F3EEE1;
-    --paper-raised:#EAE2CF;
-    --ink:        #2B2620;
-    --ink-soft:   #6B6255;
-    --ink-faint:  #746A58;
-    --rule:       #DAD0BC;
-    --rule-faint: rgba(43,38,32,0.055);
+    --paper:      #EAE6DC;
+    --paper-raised:#E1DCCC;
+    --ink:        #2E2A22;
+    --ink-soft:   #665F4F;
+    --ink-faint:  #6E6656;
+    --rule:       #D6D0C0;
+    --rule-faint: rgba(46,42,34,0.055);
     --accent-red: #96352A;
     --accent-red-soft: #A9483C;
     --accent-blue:#2F5570;
     --focus:      #2F5570;
-    --shadow:     rgba(43,38,32,0.12);
+    --shadow:     rgba(46,42,34,0.10);
   }
 
   *{ box-sizing:border-box; }
@@ -83,6 +83,7 @@
     color:var(--accent-blue); text-decoration:none;
   }
   .nav-links a:hover{ color:var(--accent-red); }
+  .nav-threshold{ color:#B9782A !important; text-shadow:0 0 7px rgba(214,149,46,0.35); }
   /* ---------- title block ---------- */
   .titleblock{
     display:flex; gap:44px; align-items:flex-end; justify-content:space-between;
@@ -300,7 +301,7 @@
   <a class="nav-name" href="index.html">David Tu</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="projects.html">Projects</a></li>
+    <li><a class="nav-threshold" href="projects.html">[ Projects ]</a></li>
     <li><a href="writing.html">Writing</a></li>
     <li><a href="projects.html#contact">Contact</a></li>
   </ul>
@@ -325,7 +326,7 @@
 
         <p>With the release of OpenAI's Astra model, we're already seeing some trends pop up. From the true-believer crowd, you have examples like uncanny AI replications of popular games — <em>Call of Duty</em>, <em>Fall Guys</em>. You also have the next stage of MMORPG plug-in tools that farm materials while the game runs in the background: <em>WoW</em> and <em>Minecraft</em> are two I've already seen. I struggle to see the use value in these cases next to the more creative ventures shown by games like <em>Infinite Craft</em>. What's the bar, if LLMs are simply being used to create inferior copies of games that already exist — or worse, to play the kinds of games that players would rather have a bot controlling for them?</p>
 
-        <p>The crux of the argument lies in a thesis put forward by Dr. Cahal Moran, a behavioral economist who runs the YouTube channel <em>Unlearning Economics</em> — video-essay-style commentary. One of his latest uploads, &ldquo;Everything Was Already A.I,&rdquo; argues there's a through-line traceable from media and entertainment to enfranchisement to the current AI boom. Even in the years before AI, there was a noticeable drop in quality across the cultural productions that defined the 2000s and 2010s. A returning example could make you swear this was a video about <em>The Simpsons</em> (Dr. Moran insists it's not): a beloved franchise iconic for quippy, culturally aware humor — how many predictions has <em>The Simpsons</em> gotten right at this point? — that eventually dragged its seasons out, becoming the very thing it once poked fun at, collaborating across its 20th Century Fox IPs with shows it had heavily inspired, like <em>Family Guy</em> and <em>American Dad</em>. Now, with a new movie lined up for next year, it's a case study in Hollywood's bloating problem. You can see the same issue elsewhere. Why do some movies and games released in the last three years look worse than productions from decades ago? Dr. Moran compares the hype around the trailers for <em>Avengers: Infinity War</em> to the reception of <em>Ant-Man and the Wasp: Quantumania</em>, a film that came out during what was perceived as a lull for Marvel Studios. Art direction and cinematography were never Marvel's strongest selling point, but the back-to-back contrast between scenes from both movies reveals just how low the bar had gotten.</p>
+        <p>The crux of the argument lies in a thesis put forward by Dr. Cahal Moran, a behavioral economist who runs the YouTube channel <em>Unlearning Economics</em> — video-essay-style commentary. One of his latest uploads, &ldquo;Everything Was Already A.I,&rdquo; argues there's a through-line traceable from media and entertainment to enshittification to the current AI boom. Even in the years before AI, there was a noticeable drop in quality across the cultural productions that defined the 2000s and 2010s. A returning example could make you swear this was a video about <em>The Simpsons</em> (Dr. Moran insists it's not): a beloved franchise iconic for quippy, culturally aware humor — how many predictions has <em>The Simpsons</em> gotten right at this point? — that eventually dragged its seasons out, becoming the very thing it once poked fun at, collaborating across its 20th Century Fox IPs with shows it had heavily inspired, like <em>Family Guy</em> and <em>American Dad</em>. Now, with a new movie lined up for next year, it's a case study in Hollywood's bloating problem. You can see the same issue elsewhere. Why do some movies and games released in the last three years look worse than productions from decades ago? Dr. Moran compares the hype around the trailers for <em>Avengers: Infinity War</em> to the reception of <em>Ant-Man and the Wasp: Quantumania</em>, a film that came out during what was perceived as a lull for Marvel Studios. Art direction and cinematography were never Marvel's strongest selling point, but the back-to-back contrast between scenes from both movies reveals just how low the bar had gotten.</p>
 
         <p>Games make maybe an even stronger case. There's a parallel story in the older Batman games — the latest being <em>Arkham Knight</em>, all the way back in 2015 — against the poor reception of their spiritual successors, <em>Suicide Squad: Kill the Justice League</em> and <em>Gotham Knights</em>. With the continued rollout of Nvidia's latest AI-assisted DLSS update, there's another disconnect: between product and marketing, and between tech and creative. Graphic fidelity is an interesting pursuit with diminishing returns over time. At some point, how good a game looked stopped mattering as much as its intended art direction — which is very apparent in games specifically. The latest footage of Rockstar's long-awaited <em>GTA VI</em> shows that after a decade, graphics can improve, but what really holds players' attention is the cinematic look and feel of the game. Lucia, Jason, and the rest of the cast look fantastic, but it was never the artists' intention to make these characters photorealistic — a problem DLSS consistently misreads. The trademark AI-filter sheen doesn't work on most games, because that was never how most games were supposed to look. Gamescom 2026, meanwhile, revealed that when all else fails, the safest bet any developer can make is to copy elements of existing games one-to-one — down to specific action sequences and trademark mechanics — package it into a glittery, indiscernible style, and give it a free-to-play, live-service model rife with microtransactions. These are the literal &ldquo;forever games&rdquo; that, extrapolated, become a meta-commentary on the other, economic &ldquo;forever game.&rdquo;</p>
 
