@@ -3,14 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-(function(){
-  try{
-    var t = localStorage.getItem('theme-preference');
-    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
-  }catch(e){}
-})();
-</script>
 <title>Projects — David Tu</title>
 <meta name="description" content="Case studies and prototypes: an LLM-economics deep dive with a live backend, a Disco Elysium-inspired RPG systems build, Unity recreations, and quantified results from two years running WSA.">
 
@@ -31,74 +23,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  /* Projects defaults dark regardless of system preference — this page's
-     register is the terminal one. [data-theme="light"] is the explicit
-     opt-out via the nav toggle; [data-theme="dark"] just re-asserts these
-     same values when the toggle is clicked back after that. */
   :root{
-    --paper:      #100D09;
-    --paper-raised:#1B140C;
-    --ink:        #EDE7DA;
-    --ink-soft:   #B5AB98;
-    --ink-faint:  #8A8071;
-    --rule:       #3A3226;
-    --rule-faint: rgba(237,231,218,0.06);
-    --accent-red: #DD8A7C;
-    --accent-red-soft: #E39C90;
-    --accent-blue:#8FB6CE;
-    --accent-term: #FFAE42;
-    --term-glow:  0 0 10px rgba(255,174,66,0.55), 0 0 2px rgba(255,174,66,0.8);
-    --card-ring:  0 0 0 1px rgba(255,174,66,0.12);
-    --body-bg-image: repeating-linear-gradient(
-      to bottom, transparent, transparent 3px,
-      rgba(255,174,66,0.035) 3px, rgba(255,174,66,0.035) 4px
-    );
-    --focus:      #FFAE42;
-    --shadow:     rgba(0,0,0,0.5);
-  }
-
-  :root[data-theme="dark"]{
-    --paper:      #100D09;
-    --paper-raised:#1B140C;
-    --ink:        #EDE7DA;
-    --ink-soft:   #B5AB98;
-    --ink-faint:  #8A8071;
-    --rule:       #3A3226;
-    --rule-faint: rgba(237,231,218,0.06);
-    --accent-red: #DD8A7C;
-    --accent-red-soft: #E39C90;
-    --accent-blue:#8FB6CE;
-    --accent-term: #FFAE42;
-    --term-glow:  0 0 10px rgba(255,174,66,0.55), 0 0 2px rgba(255,174,66,0.8);
-    --card-ring:  0 0 0 1px rgba(255,174,66,0.12);
-    --body-bg-image: repeating-linear-gradient(
-      to bottom, transparent, transparent 3px,
-      rgba(255,174,66,0.035) 3px, rgba(255,174,66,0.035) 4px
-    );
-    --focus:      #FFAE42;
-    --shadow:     rgba(0,0,0,0.5);
-  }
-
-  :root[data-theme="light"]{
-    --paper:      #F3EEE1;
-    --paper-raised:#EAE2CF;
-    --ink:        #2B2620;
-    --ink-soft:   #6B6255;
-    --ink-faint:  #948A7A;
-    --rule:       #DAD0BC;
-    --rule-faint: rgba(43,38,32,0.055);
-    --accent-red: #96352A;
-    --accent-red-soft: #A9483C;
-    --accent-blue:#2F5570;
-    --accent-term: #8A6423;
+    --paper:      #E4E8EC;
+    --paper-raised:#FBFCFD;
+    --ink:        #1C2126;
+    --ink-soft:   #545C64;
+    --ink-faint:  #656D77;
+    --rule:       #CFD6DC;
+    --accent-red: #B23A63;
+    --accent-red-soft: #C15578;
+    --accent-blue:#B3690C;
+    --accent-term: #B3690C;
+    --tag-cyan:   #0D8577;
     --term-glow:  none;
     --card-ring:  0 0 #0000;
-    --body-bg-image: repeating-linear-gradient(
-      to bottom, transparent, transparent 37px,
-      var(--rule-faint) 37px, var(--rule-faint) 38px
-    );
-    --focus:      #2F5570;
-    --shadow:     rgba(43,38,32,0.12);
+    --focus:      #B3690C;
+    --shadow:     rgba(28,33,38,0.10);
   }
 
   *{ box-sizing:border-box; }
@@ -106,7 +46,6 @@
   body{
     margin:0;
     background:var(--paper);
-    background-image: var(--body-bg-image);
     color:var(--ink);
     font-family:"Source Serif 4", Georgia, "Times New Roman", serif;
     font-size:17px;
@@ -142,14 +81,24 @@
     color:var(--accent-blue); text-decoration:none;
   }
   .nav-links a:hover{ color:var(--accent-red); }
-  .theme-toggle-item{ margin-left:auto; }
-  .theme-toggle-item::before{ content:none !important; }
-  .theme-toggle{
-    font-family:"IBM Plex Mono", monospace; font-size:0.85rem; line-height:1;
-    background:none; border:1px solid var(--rule); border-radius:4px;
-    color:var(--ink-soft); cursor:pointer; padding:4px 9px;
+
+  /* ---------- terminal chrome bar (Projects only) ---------- */
+  .chrome-bar{
+    padding:12px 28px; background:var(--rule); border-bottom:1px solid var(--rule);
+    display:flex; align-items:center; gap:10px;
   }
-  .theme-toggle:hover{ border-color:var(--accent-red); color:var(--accent-red); }
+  .chrome-dot{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .chrome-dot-a{ background:var(--accent-red); }
+  .chrome-dot-b{ background:var(--accent-term); }
+  .chrome-dot-c{ background:var(--tag-cyan); }
+  .chrome-label{
+    margin-left:6px; font-family:"IBM Plex Mono", monospace; font-size:0.7rem;
+    color:var(--ink-faint); letter-spacing:0.05em;
+  }
+  .chrome-user{
+    margin-left:auto; font-family:"IBM Plex Mono", monospace; font-size:0.78rem;
+    font-weight:600; color:var(--accent-term);
+  }
 
   /* ---------- title block ---------- */
   .titleblock{
@@ -160,7 +109,7 @@
   .titleblock-photo{ flex-shrink:0; width:216px; margin:0; }
   .titleblock-photo img{
     width:100%; display:block; border-radius:4px; border:1px solid var(--rule);
-    box-shadow:0 3px 14px var(--shadow); filter:sepia(6%) saturate(94%) contrast(103%);
+    box-shadow:0 3px 14px var(--shadow); filter:contrast(103%);
   }
   .titleblock-photo figcaption{
     margin-top:9px; font-family:"IBM Plex Mono", monospace; font-size:0.7rem;
@@ -207,7 +156,7 @@
   .margin-photo{ margin:0 0 16px; }
   .margin-photo img{
     width:100%; display:block; border-radius:4px; border:1px solid var(--rule);
-    box-shadow:0 2px 10px var(--shadow); filter:sepia(6%) saturate(94%) contrast(103%);
+    box-shadow:0 2px 10px var(--shadow); filter:contrast(103%);
   }
   .margin-photo figcaption{
     margin-top:8px; font-family:"IBM Plex Mono", monospace; font-size:0.68rem;
@@ -248,18 +197,29 @@
 
   /* ---------- projects (figures) ---------- */
   .figure{
-    background:var(--paper-raised); border:1px solid var(--rule); border-radius:4px;
-    padding:22px 24px; margin-bottom:20px;
+    background:var(--paper-raised); border:1px solid var(--rule); border-left:3px solid var(--rule);
+    border-radius:4px; padding:22px 24px; margin-bottom:20px;
     box-shadow:0 1px 2px var(--shadow), var(--card-ring);
   }
   .figure:last-child{ margin-bottom:0; }
+  .figure.is-live{ border-left-color:var(--tag-cyan); }
+  .figure.is-proto{ border-left-color:var(--accent-red); }
+  .figure.is-note{ border-left-color:var(--accent-blue); }
+  .fig-head{ display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
   .fig-label{
     font-family:"IBM Plex Mono", monospace; font-size:0.72rem; text-transform:uppercase;
-    letter-spacing:0.06em; color:var(--accent-term); display:block; margin-bottom:8px;
+    letter-spacing:0.06em; color:var(--accent-term); display:block; margin-bottom:0;
     text-shadow:var(--term-glow);
   }
   .fig-label::before{ content:"[ "; }
   .fig-label::after{ content:" ]"; }
+  .status-pill{
+    font-family:"IBM Plex Mono", monospace; font-size:0.7rem; letter-spacing:0.07em;
+    text-transform:uppercase; font-weight:600; border-radius:2px; padding:2px 8px;
+  }
+  .status-pill-live{ color:var(--tag-cyan); border:1px solid var(--tag-cyan); }
+  .status-pill-proto{ color:var(--accent-red); border:1px solid var(--accent-red); }
+  .status-pill-note{ color:var(--accent-blue); border:1px solid var(--accent-blue); }
   .figure h3{ font-size:1.15rem; margin-bottom:8px; }
   .figure p{ margin-bottom:0.7em; color:var(--ink-soft); }
   .figure p:last-child{ margin-bottom:0; }
@@ -268,6 +228,7 @@
     margin-top:20px; padding-top:18px; padding-left:18px;
     border-top:1px dashed var(--rule); border-left:2px solid var(--rule);
   }
+  .sub-figure.is-live{ border-left-color:var(--tag-cyan); }
   .sub-figure h4{ font-size:1rem; margin-bottom:8px; }
   .sub-figure p{ margin-bottom:0.7em; color:var(--ink-soft); }
   .sub-figure p:last-child{ margin-bottom:0; }
@@ -295,26 +256,13 @@
   .metric{ display:flex; flex-direction:column; }
   .metric-label{
     font-family:"IBM Plex Mono", monospace; font-size:0.7rem; text-transform:uppercase;
-    letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:10px;
+    letter-spacing:0.06em; font-weight:600; margin-bottom:10px;
   }
-  .metric-caption{ font-size:0.82rem; color:var(--ink-soft); margin:8px 0 0; max-width:none; }
-  .chart-svg{ width:100%; height:auto; display:block; }
-  .metric-stat{ justify-content:center; min-height:100px; }
-  .metric-hero{
-    font-family:"IBM Plex Mono", monospace; font-weight:600; font-size:2.6rem;
-    color:var(--ink); line-height:1;
+  .metric-value{
+    font-family:"IBM Plex Mono", monospace; font-weight:700; font-size:1.6rem;
+    color:var(--ink); line-height:1; margin:0 0 4px;
   }
-  .chart-label{ font-family:"IBM Plex Mono", monospace; font-size:11px; fill:var(--ink-soft); }
-  .chart-label-muted{
-    font-family:"IBM Plex Mono", monospace; font-size:9.5px; fill:var(--ink-faint);
-    text-transform:uppercase; letter-spacing:0.05em;
-  }
-  .chart-range{ stroke:var(--accent-blue); stroke-width:2; }
-  .chart-trend{ stroke:var(--accent-blue); stroke-width:2; stroke-dasharray:4 4; opacity:0.7; fill:none; }
-  .chart-baseline{ stroke:var(--rule); stroke-width:1; }
-  .chart-dot{ fill:var(--accent-blue); stroke:var(--paper-raised); stroke-width:2; }
-  .chart-dot-before{ fill:var(--accent-blue); opacity:0.4; stroke:var(--paper-raised); stroke-width:2; }
-  .chart-connector{ stroke:var(--accent-blue); stroke-width:2; }
+  .metric-caption{ font-size:0.82rem; color:var(--ink-faint); margin:0; max-width:none; }
 
   /* ---------- writing / posts ---------- */
   .post{
@@ -399,49 +347,31 @@
     <li><a href="projects.html">Projects</a></li>
     <li><a href="writing.html">Writing</a></li>
     <li><a href="projects.html#contact">Contact</a></li>
-    <li class="theme-toggle-item"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">&#9789;</button></li>
   </ul>
 </div>
-<script>
-(function(){
-  var KEY = 'theme-preference';
-  var root = document.documentElement;
-  var btn = document.getElementById('theme-toggle');
-  function effectiveTheme(){
-    // This page defaults dark regardless of OS/browser preference —
-    // it's the terminal register. No saved override means dark.
-    var saved; try{ saved = localStorage.getItem(KEY); }catch(e){}
-    if (saved === 'light' || saved === 'dark') return saved;
-    return 'dark';
-  }
-  function updateIcon(){ if (btn) btn.innerHTML = effectiveTheme() === 'dark' ? '&#9728;' : '&#9789;'; }
-  updateIcon();
-  if (btn){
-    btn.addEventListener('click', function(){
-      var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try{ localStorage.setItem(KEY, next); }catch(e){}
-      updateIcon();
-    });
-  }
-})();
-</script>
+<div class="chrome-bar">
+  <span class="chrome-dot chrome-dot-a"></span>
+  <span class="chrome-dot chrome-dot-b"></span>
+  <span class="chrome-dot chrome-dot-c"></span>
+  <span class="chrome-label">LOG :: PROJECTS.TERM &middot; UPLINK STABLE</span>
+  <span class="chrome-user">~/david_tu</span>
+</div>
 <div class="page" id="top">
 
   <section class="row" id="projects">
     <div class="col-main">
-      <div class="sec-head"><span class="sec-num">I.</span><h2>Projects<span class="term-cursor" aria-hidden="true">&#9608;</span></h2></div>
-      <p class="lede">I use AI heavily to build these, and this isn't the site where I'd pretend otherwise. But there's a real difference between procedural generation — rules producing structured variety, which is what actually makes something like Infinite Craft or a roguelike work — and generative AI, a model producing content wholesale. I care which one I'm reaching for, and why. I want to understand the code underneath what I ship, and there are things — the writing and art direction that make Disco Elysium what it is, for one — I don't think generative AI should touch. I care about a tool's effect as much as its affect: what it produces, and what it does to the person using it.</p>
+      <div class="sec-head"><span class="sec-num">I.</span><h2>[ Projects ]<span class="term-cursor" aria-hidden="true">&#9608;</span></h2></div>
+      <p class="lede">There's a real difference between procedural generation — rules producing structured variety, which is what actually makes something like Infinite Craft or a roguelike work — and generative AI, a model producing content wholesale. I care which one I'm reaching for, and why. I want to understand the code underneath what I ship, and there are things — the writing and art direction that make Disco Elysium what it is, for one — I don't think generative AI should touch. I care about a tool's effect as much as its affect: what it produces, and what it does to the person using it.</p>
     </div>
-    <aside class="col-margin">
-      <p class="note">Yes, this website was built with an AI. See previous page.</p>
-    </aside>
   </section>
 
   <div class="row">
     <div class="col-main">
-      <div class="figure">
-        <span class="fig-label">Fig. 1 — Writing, in progress</span>
+      <div class="figure is-note">
+        <div class="fig-head">
+          <span class="fig-label">Fig. 1 — Writing, in progress</span>
+          <span class="status-pill status-pill-note">In progress</span>
+        </div>
         <h3>An essay series on AI, capstone, and the pipeline between them</h3>
         <p>A running attempt to connect my senior capstone's questions about identity and consumer behavior to what's actually happening in AI product design right now — pricing, positioning, the way platforms manufacture desire, now with a model in the loop.</p>
         <p><a href="writing.html">&#8594; Read the entries so far</a></p>
@@ -451,14 +381,20 @@
 
   <div class="row">
     <div class="col-main">
-      <div class="figure">
-        <span class="fig-label">Fig. 2 — Want to build</span>
+      <div class="figure is-note">
+        <div class="fig-head">
+          <span class="fig-label">Fig. 2 — Want to build</span>
+          <span class="status-pill status-pill-note">Concept</span>
+        </div>
         <h3>A word-forge roguelite</h3>
         <p>Infinite Craft's combination mechanic is procedural generation doing something that looks a lot like generative AI's job, through much simpler rules — which is exactly why it's interesting to me. I want to build a roguelite around it: instead of racing strangers to a shared target word, you're combining elements under pressure to forge the one word that beats the boss in front of you.</p>
         <p>Speedrunners already treat Infinite Craft like a competitive sport. I want to make that explicit.</p>
 
-        <div class="sub-figure">
-        <span class="fig-label">Infinite Craft Lite — case study</span>
+        <div class="sub-figure is-live">
+        <div class="fig-head">
+          <span class="fig-label">Infinite Craft Lite — case study</span>
+          <span class="status-pill status-pill-live">Live demo</span>
+        </div>
         <h4>A static Infinite Craft clone, and what &ldquo;procedural&rdquo; stops meaning once an LLM is doing it</h4>
         <p>A first, smaller step toward the roguelite above: I built a working Infinite Craft clone, then got more interested in the architecture underneath it than the game itself. Neal Agarwal's real version doesn't hard-code any combinations &mdash; every new pairing anyone tries gets sent live to an LLM (Llama 2, via Together.ai), and the result is cached forever after. That's the actual distinction from the entry above, made concrete: my clone's combine logic is procedural generation in the classic sense &mdash; a fixed rule table, zero marginal cost, the same result every time. Infinite Craft's is generative AI doing that same job at runtime, for as long as the game exists.</p>
         <p>I wrote up the economics of that difference as a case study &mdash; AI Dungeon's 2021 model swap (and the quality drop players immediately noticed) is the cautionary tale for what &ldquo;runs on an LLM, forever&rdquo; actually commits you to. I also built and tested a small proof-of-concept backend (Claude Haiku 4.5) that generates genuinely novel combinations, but deliberately never deployed it for open play &mdash; the deployed demo below stays fully static on purpose.</p>
@@ -474,8 +410,11 @@
 
   <div class="row">
     <div class="col-main">
-      <div class="figure">
-        <span class="fig-label">Fig. 3 — Want to build</span>
+      <div class="figure is-proto">
+        <div class="fig-head">
+          <span class="fig-label">Fig. 3 — Want to build</span>
+          <span class="status-pill status-pill-proto">Prototype</span>
+        </div>
         <h3>A thought cabinet for every RPG</h3>
         <p>Disco Elysium's skills aren't stat sticks — each one has a voice, a personality, an argument with you. I want to build toward something like it: a system where what you wear doesn't just add or subtract points, but combines with your build to produce new archetypes, the way the Thought Cabinet turns ideas into permanent traits.</p>
         <p>Longer term, I want to port that depth to games like Baldur's Gate 3, where the full subclass catalogue only really exists behind third-party mods. Which means the actual prerequisite is learning how modding and engine-level systems work — not just designing the spreadsheet.</p>
@@ -489,8 +428,11 @@
 
   <div class="row">
     <div class="col-main">
-      <div class="figure">
-        <span class="fig-label">Fig. 4 — First reps</span>
+      <div class="figure is-proto">
+        <div class="fig-head">
+          <span class="fig-label">Fig. 4 — First reps</span>
+          <span class="status-pill status-pill-proto">Playable</span>
+        </div>
         <h3>Unity recreations of Flappy Bird &amp; the Chrome Dinosaur game</h3>
         <p>Baseline reps, not the destination — built in C# and Visual Studio: 2D physics, collision, object spawning/destruction, scoring, UI, sound, and animation, all from scratch.</p>
         <p>Used <code>Time.deltaTime</code> for hardware-independent movement and iterated on collider dimensions and object lifecycle to tune gameplay consistency, perceived fairness, and performance.</p>
@@ -511,8 +453,11 @@
 
   <div class="row">
     <div class="col-main">
-      <div class="figure">
-        <span class="fig-label">Fig. 5 — Finished</span>
+      <div class="figure is-note">
+        <div class="fig-head">
+          <span class="fig-label">Fig. 5 — Finished</span>
+          <span class="status-pill status-pill-note">Written up</span>
+        </div>
         <h3>Cultural politics &amp; consumer behavior</h3>
         <p>My senior capstone, and the closest thing to a culmination of four years in the College of Social Studies: applied economic and sociological theory to how identity and cultural values shape consumer behavior, product positioning, pricing, and brand perception — with cases spanning Anthropologie, AriZona Beverages, and the shifting grammar of luxury consumption.</p>
         <div class="post-sources">
@@ -524,55 +469,30 @@
 
   <div class="row">
     <div class="col-main">
-      <div class="figure">
-        <span class="fig-label">Fig. 6 — Two years running WSA's Community Committee</span>
+      <div class="figure is-note">
+        <div class="fig-head">
+          <span class="fig-label">Fig. 6 — Two years running WSA's Community Committee</span>
+          <span class="status-pill status-pill-note">Case study</span>
+        </div>
         <h3>Cardinal Night, the fee fund, and the Organizing Center</h3>
         <p>As Vice Chair, I owned the parts of student government that actually touch money and physical space: the campus-business discount night, the ~$1.4M Student Activities Fee fund every club draws from, and the building that houses 50+ student organizations. Three numbers I can actually stand behind:</p>
 
         <div class="metrics-grid">
           <div class="metric">
-            <span class="metric-label">Cardinal Night turnout</span>
-            <svg class="chart-svg" viewBox="0 0 380 90" role="img" aria-label="Cardinal Night turnout grew from 40 students to 83 students">
-              <title>End-of-year survey: 40 → 83 students</title>
-              <line x1="172" y1="50" x2="325" y2="50" class="chart-connector"></line>
-              <circle cx="172" cy="50" r="6" class="chart-dot-before"></circle>
-              <circle cx="325" cy="50" r="7" class="chart-dot"></circle>
-              <text x="172" y="32" text-anchor="middle" class="chart-label">40</text>
-              <text x="325" y="32" text-anchor="middle" class="chart-label">83</text>
-              <text x="248" y="16" text-anchor="middle" class="chart-label" style="font-weight:600;">+43 students</text>
-              <text x="172" y="72" text-anchor="middle" class="chart-label-muted">FIRST YEAR</text>
-              <text x="325" y="72" text-anchor="middle" class="chart-label-muted">MOST RECENT</text>
-            </svg>
+            <span class="metric-label" style="color:var(--tag-cyan);">Cardinal Night turnout</span>
+            <div class="metric-value">40 &rarr; 83</div>
             <p class="metric-caption">Roughly doubled, per end-of-year survey — after a weak first year, once onboarding and promotion actually worked.</p>
           </div>
 
           <div class="metric">
-            <span class="metric-label">Student activities fee fund</span>
-            <svg class="chart-svg" viewBox="0 0 380 150" role="img" aria-label="Fund deficit narrowing from 200 to 300 thousand dollars to balanced over three years">
-              <title>Spring 2024: $200–300K deficit → Spring 2025: cut by $100K+ → Spring 2026: balanced</title>
-              <line x1="20" y1="17" x2="360" y2="17" class="chart-baseline"></line>
-              <line x1="70" y1="103" x2="190" y2="69" class="chart-trend"></line>
-              <line x1="190" y1="69" x2="310" y2="17" class="chart-trend"></line>
-              <line x1="70" y1="120" x2="70" y2="86" class="chart-range"></line>
-              <line x1="62" y1="120" x2="78" y2="120" class="chart-range"></line>
-              <line x1="62" y1="86" x2="78" y2="86" class="chart-range"></line>
-              <line x1="190" y1="86" x2="190" y2="51" class="chart-range"></line>
-              <line x1="182" y1="86" x2="198" y2="86" class="chart-range"></line>
-              <line x1="182" y1="51" x2="198" y2="51" class="chart-range"></line>
-              <circle cx="310" cy="17" r="7" class="chart-dot"></circle>
-              <text x="70" y="78" text-anchor="middle" class="chart-label">$200–300K</text>
-              <text x="190" y="43" text-anchor="middle" class="chart-label">$100–200K</text>
-              <text x="310" y="10" text-anchor="middle" class="chart-label" style="font-weight:600;">Balanced</text>
-              <text x="70" y="140" text-anchor="middle" class="chart-label-muted">SPR '24</text>
-              <text x="190" y="140" text-anchor="middle" class="chart-label-muted">SPR '25</text>
-              <text x="310" y="140" text-anchor="middle" class="chart-label-muted">SPR '26</text>
-            </svg>
+            <span class="metric-label" style="color:var(--accent-blue);">Student activities fee fund</span>
+            <div class="metric-value">Balanced</div>
             <p class="metric-caption">Cut by $100K+ by junior year while still drawing on reserves; confirmed balanced by graduation.</p>
           </div>
 
-          <div class="metric metric-stat">
-            <span class="metric-label">Organizing Center</span>
-            <span class="metric-hero">$120K</span>
+          <div class="metric">
+            <span class="metric-label" style="color:var(--accent-red);">Organizing Center</span>
+            <div class="metric-value">$120K</div>
             <p class="metric-caption">Major maintenance funding plan — a number that exists because I built the case for it and got it approved.</p>
           </div>
         </div>
@@ -592,7 +512,7 @@
 
   <section class="row" id="contact">
     <div class="col-main">
-      <div class="sec-head"><span class="sec-num">II.</span><h2>Correspondence</h2></div>
+      <div class="sec-head"><span class="sec-num">II.</span><h2>[ Correspondence ]</h2></div>
       <div class="contact-line"><span class="contact-label">Email</span><a href="mailto:davidtu180@gmail.com">davidtu180@gmail.com</a></div>
       <div class="contact-line"><span class="contact-label">School</span><a href="mailto:dtu@wesleyan.edu">dtu@wesleyan.edu</a></div>
       <div class="contact-line"><span class="contact-label">LinkedIn</span><a href="https://www.linkedin.com/in/david-tu-0966a6222" target="_blank" rel="noopener">linkedin.com/in/david-tu</a></div>

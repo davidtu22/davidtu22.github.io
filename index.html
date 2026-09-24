@@ -3,14 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-(function(){
-  try{
-    var t = localStorage.getItem('theme-preference');
-    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
-  }catch(e){}
-})();
-</script>
 <title>David Tu</title>
 <meta name="description" content="Personal site of David Tu — College of Social Studies &amp; Sociology, Wesleyan '26, bringing a critical eye on tech into product work.">
 
@@ -36,7 +28,7 @@
     --paper-raised:#EAE2CF;
     --ink:        #2B2620;
     --ink-soft:   #6B6255;
-    --ink-faint:  #948A7A;
+    --ink-faint:  #746A58;
     --rule:       #DAD0BC;
     --rule-faint: rgba(43,38,32,0.055);
     --accent-red: #96352A;
@@ -44,37 +36,6 @@
     --accent-blue:#2F5570;
     --focus:      #2F5570;
     --shadow:     rgba(43,38,32,0.12);
-  }
-
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --paper:      #1E1A15;
-      --paper-raised:#26201A;
-      --ink:        #EDE7DA;
-      --ink-soft:   #B5AB98;
-      --ink-faint:  #8A8071;
-      --rule:       #3A3226;
-      --rule-faint: rgba(237,231,218,0.06);
-      --accent-red: #DD8A7C;
-      --accent-red-soft: #E39C90;
-      --accent-blue:#8FB6CE;
-      --focus:      #8FB6CE;
-      --shadow:     rgba(0,0,0,0.35);
-    }
-  }
-  :root[data-theme="dark"]{
-    --paper:      #1E1A15;
-    --paper-raised:#26201A;
-    --ink:        #EDE7DA;
-    --ink-soft:   #B5AB98;
-    --ink-faint:  #8A8071;
-    --rule:       #3A3226;
-    --rule-faint: rgba(237,231,218,0.06);
-    --accent-red: #DD8A7C;
-    --accent-red-soft: #E39C90;
-    --accent-blue:#8FB6CE;
-    --focus:      #8FB6CE;
-    --shadow:     rgba(0,0,0,0.35);
   }
 
   *{ box-sizing:border-box; }
@@ -122,15 +83,6 @@
     color:var(--accent-blue); text-decoration:none;
   }
   .nav-links a:hover{ color:var(--accent-red); }
-  .theme-toggle-item{ margin-left:auto; }
-  .theme-toggle-item::before{ content:none !important; }
-  .theme-toggle{
-    font-family:"IBM Plex Mono", monospace; font-size:0.85rem; line-height:1;
-    background:none; border:1px solid var(--rule); border-radius:4px;
-    color:var(--ink-soft); cursor:pointer; padding:4px 9px;
-  }
-  .theme-toggle:hover{ border-color:var(--accent-red); color:var(--accent-red); }
-
   /* ---------- title block ---------- */
   .titleblock{
     display:flex; gap:44px; align-items:flex-end; justify-content:space-between;
@@ -349,39 +301,16 @@
     <li><a href="projects.html">Projects</a></li>
     <li><a href="writing.html">Writing</a></li>
     <li><a href="projects.html#contact">Contact</a></li>
-    <li class="theme-toggle-item"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">&#9789;</button></li>
   </ul>
 </div>
-<script>
-(function(){
-  var KEY = 'theme-preference';
-  var root = document.documentElement;
-  var btn = document.getElementById('theme-toggle');
-  function systemDark(){ return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }
-  function effectiveTheme(){
-    var saved; try{ saved = localStorage.getItem(KEY); }catch(e){}
-    if (saved === 'light' || saved === 'dark') return saved;
-    return systemDark() ? 'dark' : 'light';
-  }
-  function updateIcon(){ if (btn) btn.innerHTML = effectiveTheme() === 'dark' ? '&#9728;' : '&#9789;'; }
-  updateIcon();
-  if (btn){
-    btn.addEventListener('click', function(){
-      var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try{ localStorage.setItem(KEY, next); }catch(e){}
-      updateIcon();
-    });
-  }
-})();
-</script>
 <div class="page" id="top">
 
   <header class="titleblock">
     <div class="titleblock-text">
       <p class="kicker">Personal site · Draft 1, revised often</p>
       <h1>David Tu</h1>
-      <p class="sub">CSS (Economics, Government, History) &amp; Sociology, Wesleyan '26 — reformed critic of Silicon Valley, presently trying to build things in it.</p>
+      <p class="sub">CSS (Economics, Government, History) &amp; Sociology, Wesleyan '26.</p>
+      <p class="sub">Access over hype — an economist's read on incentives, now aimed at building product.</p>
       <p class="keywords"><b>Keywords —</b> platform governance · procedural generation vs. generative AI · Disco Elysium theorycrafting · budget forensics</p>
     </div>
     <figure class="titleblock-photo">
