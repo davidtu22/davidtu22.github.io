@@ -83,16 +83,38 @@
     color:var(--accent-blue); text-decoration:none;
   }
   .nav-links a:hover{ color:var(--accent-red); }
+  .nav-threshold{ color:#B9782A !important; text-shadow:0 0 7px rgba(214,149,46,0.35); }
+
+  /* ---------- featured stat band ---------- */
+  .featured-band{
+    background:var(--accent-red); color:var(--paper);
+    padding:44px 28px; margin:0 -28px; display:flex; align-items:center;
+    justify-content:space-between; gap:32px; flex-wrap:wrap;
+  }
+  .featured-band .label{
+    font-family:"IBM Plex Mono", monospace; font-size:0.72rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:rgba(243,238,225,0.72); margin:0 0 12px;
+  }
+  .featured-band .value{
+    font-family:"Newsreader", serif; font-weight:600; font-size:clamp(2rem,4.5vw,3rem);
+    line-height:1.05; margin:0 0 8px; max-width:460px;
+  }
+  .featured-band .caption{ font-size:0.95rem; max-width:420px; margin:0; color:rgba(243,238,225,0.88); }
+  .featured-band .btn{
+    flex-shrink:0; color:var(--accent-red); background:var(--paper); border:none;
+    box-shadow:0 0 0 1px rgba(214,149,46,0.4);
+  }
+  .featured-band .btn:hover{ background:#EAE2CF; }
   /* ---------- title block ---------- */
   .titleblock{
     display:flex; gap:44px; align-items:flex-end; justify-content:space-between;
     padding:64px 0 40px; border-bottom:1px solid var(--rule);
   }
   .titleblock-text{ flex:1; min-width:0; }
-  .titleblock-photo{ flex-shrink:0; width:216px; margin:0; }
+  .titleblock-photo{ flex-shrink:0; width:240px; margin:0; }
   .titleblock-photo img{
-    width:100%; display:block; border-radius:4px; border:1px solid var(--rule);
-    box-shadow:0 3px 14px var(--shadow); filter:sepia(6%) saturate(94%) contrast(103%);
+    width:100%; display:block; border-radius:6px; border:1px solid var(--rule);
+    box-shadow:0 10px 30px var(--shadow); filter:sepia(6%) saturate(94%) contrast(103%);
   }
   .titleblock-photo figcaption{
     margin-top:9px; font-family:"IBM Plex Mono", monospace; font-size:0.7rem;
@@ -102,7 +124,8 @@
     font-family:"IBM Plex Mono", monospace; font-size:0.76rem; letter-spacing:0.08em;
     text-transform:uppercase; color:var(--ink-faint); margin:0 0 18px;
   }
-  .titleblock h1{ font-size:clamp(2.4rem, 5vw, 3.6rem); line-height:1.05; margin-bottom:14px; }
+  .titleblock h1{ font-size:clamp(2.6rem, 6.5vw, 4.5rem); line-height:0.98; margin-bottom:6px; letter-spacing:-0.01em; }
+  .hero-rule{ width:64px; height:4px; background:var(--accent-red); margin:18px 0 22px; }
   .titleblock .sub{
     font-family:"Newsreader", serif; font-style:italic; font-weight:400;
     font-size:1.2rem; color:var(--ink-soft); max-width:52ch; text-wrap:balance;
@@ -269,6 +292,11 @@
     color:var(--ink); background:var(--paper-raised); border:1px solid var(--rule);
     border-radius:4px; padding:10px 16px; transition:border-color .15s, color .15s;
   }
+  .btn-primary{
+    color:var(--paper); background:var(--accent-red); border-color:transparent;
+    box-shadow:0 0 0 1px rgba(214,149,46,0.5);
+  }
+  .btn-primary:hover{ background:#7C2B22; color:var(--paper); border-color:transparent; }
   .btn:hover{ border-color:var(--accent-red); color:var(--accent-red); }
 
   footer{
@@ -285,6 +313,7 @@
     .page{ padding:0 20px 60px; }
     .titleblock{ padding:44px 0 32px; flex-direction:column-reverse; align-items:flex-start; gap:24px; }
     .titleblock-photo{ width:150px; }
+    .featured-band{ margin:0 -20px; padding:32px 20px; }
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -298,7 +327,7 @@
   <a class="nav-name" href="index.html">David Tu</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="projects.html">Projects</a></li>
+    <li><a class="nav-threshold" href="projects.html">[ Projects ]</a></li>
     <li><a href="writing.html">Writing</a></li>
     <li><a href="projects.html#contact">Contact</a></li>
   </ul>
@@ -309,6 +338,7 @@
     <div class="titleblock-text">
       <p class="kicker">Personal site · Draft 1, revised often</p>
       <h1>David Tu</h1>
+      <div class="hero-rule"></div>
       <p class="sub">CSS (Economics, Government, History) &amp; Sociology, Wesleyan '26.</p>
       <p class="sub">Access over hype — an economist's read on incentives, now aimed at building product.</p>
       <p class="keywords"><b>Keywords —</b> platform governance · procedural generation vs. generative AI · Disco Elysium theorycrafting · budget forensics</p>
@@ -319,12 +349,21 @@
     </figure>
   </header>
 
+  <div class="featured-band">
+    <div>
+      <p class="label">Featured &mdash; two years running WSA</p>
+      <div class="value">$120K</div>
+      <p class="caption">Organizing Center maintenance funding &mdash; a number that exists because I built the case for it and got it approved.</p>
+    </div>
+    <a class="btn" href="projects.html#projects">View project &rarr;</a>
+  </div>
+
   <section class="row" id="abstract">
     <div class="col-main">
       <div class="sec-head"><span class="sec-num">I.</span><h2>Abstract</h2></div>
       <p class="lede">I spent four years being trained to interrogate the institutions I'm now trying to join — reading about platform incentives and extraction on a Tuesday, drafting a funding proposal on a Thursday. The College of Social Studies at Wesleyan doesn't let you separate economic analysis from its consequences, and I don't think I want to un-learn that going into tech.</p>
       <p>So I'll say it plainly: I have not swallowed the pill. I'm probably still a cynic about a lot of what Silicon Valley tells itself. But I also spent two years turning a public university's chaotic budget process into something 150+ student organizations could actually plan around, which is closer to product work than either an econ department or a tech company would usually admit. I'd rather bring the critique in than pretend I've left it at the door.</p>
-      <a class="btn" href="projects.html">See what I'm building →</a>
+      <a class="btn btn-primary" href="projects.html">See what I'm building →</a>
     </div>
     <aside class="col-margin">
       <p class="note">Translation: I have four years of opinions about Silicon Valley and I'm about to go ask it for a job.</p>
