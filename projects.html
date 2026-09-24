@@ -396,7 +396,7 @@
       </div>
       <div class="fig-row-body">
         <h3>An essay series on AI, capstone, and the pipeline between them</h3>
-        <p>A running attempt to connect my senior capstone's questions about identity and consumer behavior to what's actually happening in AI product design right now, now with a model in the loop.</p>
+        <p>A running attempt to connect my senior capstone's questions about identity and consumer behavior to what's actually happening in AI product design right now &mdash; pricing, positioning, the way platforms manufacture desire, now with a model in the loop.</p>
       </div>
       <div class="fig-row-links">
         <a href="writing.html">&#8594; Read the entries so far</a>
@@ -410,7 +410,8 @@
       </div>
       <div class="fig-row-body">
         <h3>A word-forge roguelite</h3>
-        <p>Infinite Craft's combination mechanic, turned into a roguelite &mdash; forge the one word that beats the boss in front of you, the way speedrunners already treat the game like a competitive sport.</p>
+        <p>Infinite Craft's combination mechanic is procedural generation doing something that looks a lot like generative AI's job, through much simpler rules &mdash; which is exactly why it's interesting to me. I want to build a roguelite around it: instead of racing strangers to a shared target word, you're combining elements under pressure to forge the one word that beats the boss in front of you.</p>
+        <p>Speedrunners already treat Infinite Craft like a competitive sport. I want to make that explicit.</p>
       </div>
       <div class="fig-row-links"></div>
     </div>
@@ -422,7 +423,8 @@
       </div>
       <div class="fig-row-body">
         <h3>Infinite Craft Lite &mdash; a static clone, case study</h3>
-        <p>What &ldquo;procedural&rdquo; stops meaning once an LLM is doing it. AI Dungeon's 2021 model swap is the cautionary tale for what &ldquo;runs on an LLM, forever&rdquo; actually costs.</p>
+        <p>A first, smaller step toward the roguelite above: I built a working Infinite Craft clone, then got more interested in the architecture underneath it than the game itself. Neal Agarwal's real version doesn't hard-code any combinations &mdash; every new pairing anyone tries gets sent live to an LLM (Llama 2, via Together.ai), and the result is cached forever after. That's the actual distinction from the entry above, made concrete: my clone's combine logic is procedural generation in the classic sense &mdash; a fixed rule table, zero marginal cost, the same result every time. Infinite Craft's is generative AI doing that same job at runtime, for as long as the game exists.</p>
+        <p>I wrote up the economics of that difference as a case study &mdash; AI Dungeon's 2021 model swap (and the quality drop players immediately noticed) is the cautionary tale for what &ldquo;runs on an LLM, forever&rdquo; actually commits you to. I also built and tested a small proof-of-concept backend (Claude Haiku 4.5) that generates genuinely novel combinations, but deliberately never deployed it for open play &mdash; the deployed demo below stays fully static on purpose.</p>
       </div>
       <div class="fig-row-links">
         <a href="https://davidtu22.github.io/a-case-study-on-infinite-craft-and-llm-games/" target="_blank" rel="noopener">&#8594; Play the demo</a>
@@ -438,7 +440,8 @@
       </div>
       <div class="fig-row-body">
         <h3>A thought cabinet for every RPG</h3>
-        <p>Disco Elysium's skills have a voice, not just stats &mdash; I want a system where what you wear combines with your build to produce new archetypes, the way the Thought Cabinet works.</p>
+        <p>Disco Elysium's skills aren't stat sticks &mdash; each one has a voice, a personality, an argument with you. I want to build toward something like it: a system where what you wear doesn't just add or subtract points, but combines with your build to produce new archetypes, the way the Thought Cabinet turns ideas into permanent traits.</p>
+        <p>Longer term, I want to port that depth to games like Baldur's Gate 3, where the full subclass catalogue only really exists behind third-party mods. Which means the actual prerequisite is learning how modding and engine-level systems work &mdash; not just designing the spreadsheet.</p>
       </div>
       <div class="fig-row-links">
         <a href="https://davidtu22.github.io/thought-compass/" target="_blank" rel="noopener">&#8594; Try Thought Compass</a>
@@ -453,7 +456,8 @@
       </div>
       <div class="fig-row-body">
         <h3>Unity: Flappy Bird &amp; the Chrome Dinosaur game</h3>
-        <p>Baseline reps in C# and Visual Studio &mdash; 2D physics, collision, scoring, sound, and animation, all from scratch, tuned via <code>Time.deltaTime</code> for hardware-independent movement.</p>
+        <p>Baseline reps, not the destination &mdash; built in C# and Visual Studio: 2D physics, collision, object spawning/destruction, scoring, UI, sound, and animation, all from scratch.</p>
+        <p>Used <code>Time.deltaTime</code> for hardware-independent movement and iterated on collider dimensions and object lifecycle to tune gameplay consistency, perceived fairness, and performance.</p>
         <p class="aside-note">Yes, I know &mdash; everyone's first Unity project is Flappy Bird. I contain multitudes.</p>
       </div>
       <div class="fig-row-links">
@@ -469,7 +473,7 @@
       </div>
       <div class="fig-row-body">
         <h3>Cultural politics &amp; consumer behavior</h3>
-        <p>My senior capstone &mdash; how identity and cultural values shape consumer behavior, pricing, and brand perception, with cases spanning Anthropologie, AriZona Beverages, and the grammar of luxury consumption.</p>
+        <p>My senior capstone, and the closest thing to a culmination of four years in the College of Social Studies: applied economic and sociological theory to how identity and cultural values shape consumer behavior, product positioning, pricing, and brand perception &mdash; with cases spanning Anthropologie, AriZona Beverages, and the shifting grammar of luxury consumption.</p>
       </div>
       <div class="fig-row-links">
         <a href="papers/cultural-politics-consumer-behavior.pdf" target="_blank" rel="noopener">&#8594; Read the capstone (PDF)</a>
